@@ -12,3 +12,14 @@
     height: 10px;
     position: absolute;
 }
+
+@font-face {
+    font-family: Monocraft;
+    src: url(https://github.com/IdreesInc/Monocraft/releases/download/v3.0/Monocraft-nerd-fonts-patched.ttf);
+}
+
+#asd {
+    width: 99vw;
+    text-align: center;
+    font-family: Monocraft;
+}
