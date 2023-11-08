@@ -23,3 +23,41 @@
     text-align: center;
     font-family: Monocraft;
 }
+
+#settings {
+    border: 2px solid green;
+    width: 400px;
+    height: 80px;
+    padding: 20px;
+    /* margin: auto; */
+    font-family: Monocraft;
+    font-size: 1.5rem;
+    float: left;
+}
+#settings input {
+    height: 20px;
+    width: 339px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+#settings button {
+    width: 400px;
+    height: 50px;
+    text-align: center;
+}
+#menu {
+    width: 888px;
+    margin: auto;
+}
+body {
+    overflow: hidden;
+}
+#controls {
+    border: 2px solid green;
+    width: 440px;
+    height: 120px;
+    padding: 0px;
+    /* margin: auto; */
+    font-family: Monocraft;
+    float: right;
+}

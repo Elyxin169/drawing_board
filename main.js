@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const width = 128;
 const height = 72;
+let fps = 15;
 let pixels = [];
 
 var keys = {};
@@ -43,18 +44,36 @@ function access(y, x) {
 
 
 let x = 0, y = 0;
-let keyAt = [15, 15];
+let cursor = [15, 15];
+let lastPos = [15, 15];
+let penDown = true;
+let lastCol = "#ffffff"
 function mainLoop() {
     if (keys['w']) y = -1;
     if (keys['s']) y = 1;
     if (keys['a']) x = -1;
     if (keys['d']) x = 1;
+    if (keys['f']) penDown = false;
+    if (keys['g']) penDown = true;
 
-    keyAt[0] += x;
-    keyAt[1] += y;
+    lastCol = pixels[access(cursor[0], cursor[1])].color;
+    cursor[0] += x;
+    cursor[1] += y;
     x = 0; y = 0;
-    pixels[access(keyAt[0], keyAt[1])].changeColor("#00ffff");
+
+    if (penDown)
+        // pixels[access(cursor[0], cursor[1])].changeColor("#00ffff");
+        pixels[access(lastPos[0], lastPos[1])].changeColor("#00ffff");
+    else
+        pixels[access(lastPos[0], lastPos[1])].changeColor(lastCol);
+
+    pixels[access(cursor[0], cursor[1])].changeColor("#ff0000");
+
+    lastPos = cursor.slice();
 }
+
+
+
 
 function main() {
 
@@ -63,7 +82,13 @@ function main() {
             pixels.push(new Pixel(i * 10, j * 10, `rgb(${i}, 50, 50)`));
         }
     }
-    setInterval(mainLoop, 1000 / 60);
+    setInterval(mainLoop, 1000 / fps);
 }
 
-main();
+function startGame() {
+    fps = document.querySelector("#fpsInput").value;
+    document.querySelector("#begone").style.display = "none";
+    document.querySelector("#settings").style.height = "30px";
+    document.querySelector("#controls").style.height = "70px";
+    main();
+}
